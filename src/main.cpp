@@ -22,9 +22,12 @@ int main(int argc, char** argv) {
 
   RandomSeed(time(NULL));
   Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
-  (new Arrivals(args.summerMode, args.holiday))->Activate();
+  Arrivals* arrivals = new Arrivals(args.summerMode, args.holiday);
+  arrivals->Activate();
+  
   Run();
-  arrivalHist.Output();
+  
+  arrivals->arrivalHist.Output();
 
   return EXIT_SUCCESS;
 }

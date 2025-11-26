@@ -3,8 +3,6 @@
 #include "Constants.hpp"
 #include <iostream>
 
-Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
-
 void Arrivals::Behavior() {
 	while (Time/HOUR < 19.5 ) {
 		int hour = int(Time / HOUR);
