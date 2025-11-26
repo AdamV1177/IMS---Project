@@ -4,7 +4,6 @@
 #include <iostream>
 
 void Visitor::Behavior() {
-	Enter(Waterpark::Capacity); // Take waterpark capacity
 
 	// Choose entry based on time of year and probability
 	if (Waterpark::summerMode && Random() <= SUMMER_ENTRY_PROB)
@@ -50,6 +49,12 @@ void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time)
 	int free = -1;
 	while (free == -1) {
 
+		// Passivate process in the queue if the waterpark isnt open yet
+		if (Time < OPENING_TIME) {
+			Into(*queue);
+			Passivate();
+		}
+
 		// Look for free register
 		for (int i = 0; i < count; i++) {
 			if (!entry[i].Busy()) {
@@ -69,6 +74,9 @@ void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time)
 	Seize(entry[free]);
 	Wait(Exponential(time));
 	Release(entry[free]);
+
+	// Take waterpark capacity on entry
+	Enter(Waterpark::Capacity);
 
 	// Activate process in Queue
 	if (queue->Length() > 0)

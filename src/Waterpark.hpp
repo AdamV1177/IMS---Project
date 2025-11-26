@@ -13,7 +13,10 @@ namespace Waterpark {
     inline Queue SummerEntryQueue;
     inline Queue MainEntryQueue;
     inline Queue SmartRegisterQueue;
+
+    // Statistics
     inline int moneyMade = 0;
-}; // namespace Waterpark
+
+};
 
 #endif

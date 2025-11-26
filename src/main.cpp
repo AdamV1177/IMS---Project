@@ -3,6 +3,8 @@
 #include "Waterpark.hpp"
 #include "Arrivals.hpp"
 #include <iostream>
+#include "OpeningTime.hpp"
+#include <ctime>
 
 int main(int argc, char** argv) {
 
@@ -20,9 +22,11 @@ int main(int argc, char** argv) {
   if (Waterpark::summerMode)
     Waterpark::Capacity.SetCapacity(SUMMER_CAPACITY);
 
-    
+  // Initialize and run simulation
+  RandomSeed(time(NULL));
   Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
   (new Arrivals(args.summerMode, args.holiday))->Activate();
+  (new OpeningTime)->Activate(OPENING_TIME);
   Run();
 
   // Statistic outputs
