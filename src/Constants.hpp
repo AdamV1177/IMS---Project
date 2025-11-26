@@ -33,12 +33,14 @@
 // Prices
 #define BASE_PRICE 899
 #define ESHOP_PRICE 799
-#define PRICE_POST17 499
+#define SALE_PRICE 499
 
 // System timings
 #define START_TIME_SIMULATION 9 * HOUR
 #define END_TIME_SIMULATION 22 * HOUR
 #define OPENING_TIME 10 * HOUR
+#define SALE_TIME 17.0
+#define LAST_ENTRY_TIME 19.5
 
 // Summer weekday - visitor arrivals
 static const double SUMMER_WEEKDAY[16] = {

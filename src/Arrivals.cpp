@@ -6,7 +6,7 @@
 Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
 
 void Arrivals::Behavior() {
-	while (Time / HOUR < 19.5) {
+	while (Time / HOUR < LAST_ENTRY_TIME) {
 		int hour = int(Time / HOUR);
 		arrivalHist(hour);
 		double d = GetInterarrivalTime(hour, isSummer, isHoliday);
