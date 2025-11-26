@@ -57,5 +57,5 @@ void Visitor::outsideEntry() {
 
 void Visitor::insideEntry() {
   // TODO tady bude peknej bordel s pokladnama xD
-  std::cerr << "TODO\n";
+  // std::cerr << "TODO\n";
 }
