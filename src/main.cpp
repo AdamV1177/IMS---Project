@@ -1,5 +1,6 @@
 #include "Arguments.hpp"
 #include <cstdlib>
+#include "Waterpark.hpp"
 
 int main(int argc, char** argv) {
 
@@ -12,7 +13,10 @@ int main(int argc, char** argv) {
   else if (parseRes == Arguments::ERROR)
     return EXIT_FAILURE;
 
-  // TODO Start simulation
+  // Set summer mode and capacity
+  Waterpark::summerMode = args.summerMode;
+  if (Waterpark::summerMode)
+    Waterpark::Capacity.SetCapacity(SUMMER_CAPACITY);
 
   return EXIT_SUCCESS;
 }
