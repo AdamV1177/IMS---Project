@@ -18,6 +18,7 @@ void Visitor::Behavior() {
 }
 
 void Visitor::inWaterpark() {
+
   // Wait for some random time based on waterpark mode
   const double alpha = Waterpark::summerMode ? SUMMER_GAMMA_ALPHA : DEFAULT_GAMMA_ALPHA;
   const double beta = Waterpark::summerMode ? SUMMER_GAMMA_BETA : DEFAULT_GAMMA_BETA;
@@ -26,13 +27,27 @@ void Visitor::inWaterpark() {
 
 void Visitor::outsideEntry() {
 
-  // Wait for free summer entry register
+  // Use summer entry with its queue 
+  useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+}
+
+void Visitor::insideEntry() {
+
+  // Chance of the visitor having a prebought ticket
+  // Use either smart kiosks or the main registers with cashiers
+  if (Random() <= ONLINE_TICKET_PROB)
+    useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+  else
+    useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+}
+
+void Visitor::useRegister(Facility* entry, Queue* queue, int count, double time) {
   int free = -1;
   while (free == -1) {
 
     // Look for free register
-    for (int i = 0; i < SUMMER_ENTRY_REGISTER_CNT; i++) {
-      if (!Waterpark::SummerEntry[i].Busy()){
+    for (int i = 0; i < count; i++) {
+      if (!entry[i].Busy()){
         free = i;
         break;
       }
@@ -40,22 +55,17 @@ void Visitor::outsideEntry() {
 
     // No free register, enter queue and wait for activation
     if (free == -1) {
-      Into(Waterpark::SummerEntryQueue);
+      Into(*queue);
       Passivate();
     }
   }
-  
+
   // Seize and use register
-  Seize(Waterpark::SummerEntry[free]);
-  Wait(Exponential(SUMMER_ENTRY_REGISTER_TIME));
-  Release(Waterpark::SummerEntry[free]);
+  Seize(entry[free]);
+  Wait(Exponential(time));
+  Release(entry[free]);
 
   // Activate process in Queue
-  if (Waterpark::SummerEntryQueue.Length() > 0)
-    (Waterpark::SummerEntryQueue.GetFirst())->Activate();
-}
-
-void Visitor::insideEntry() {
-  // TODO tady bude peknej bordel s pokladnama xD
-  // std::cerr << "TODO\n";
+  if (queue->Length() > 0)
+    (queue->GetFirst())->Activate();
 }

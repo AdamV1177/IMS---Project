@@ -4,7 +4,7 @@
 #define HOUR 60.0
 
 // Probabilities
-#define SUMMER_ENTRY_PROB 0.4         // ??? Probablity of visitor entry through the summer entrance
+#define SUMMER_ENTRY_PROB 0.2         // ??? Probablity of visitor entry through the summer entrance
 #define ONLINE_TICKET_PROB 0.6        // ??? Probability of visitor having an online ticket
 
 // Capacities
@@ -13,13 +13,12 @@
 
 // Register capacities
 #define SUMMER_ENTRY_REGISTER_CNT 3   // ??? Number of registers at the summer entry
-#define MAIN_ENTRY_SMART_CNT 2        // ??? Number of smart registers at the main entry
-#define MAIN_ENTRY_REGISTER_CNT 5     // ??? Number of registers at main entry
+#define MAIN_ENTRY_SMART_CNT 7        // Number of smart registers at the main entry
+#define MAIN_ENTRY_REGISTER_CNT 3     // ??? Number of registers at main entry
 
 // Register times in minutes
-#define SUMMER_ENTRY_REGISTER_TIME 3  // ??? Average time at the summer entry register 
+#define ENTRY_REGISTER_TIME 3         // ??? Average time at a register 
 #define MAIN_ENTRY_SMART_TIME 2       // Average time at the smart register
-#define MAIN_ENTRY_REGISTER_TIME 3    // ??? Average time at the main entry register
 
 // Visitor stay time
 #define SUMMER_STAY_AVG 6*HOUR              // Average time of stay in the summer mode
@@ -33,6 +32,7 @@
 
 #define START_TIME_SIMULATION 9*HOUR
 #define END_TIME_SIMULATION 22*HOUR
+
 // Summer weekday - visitor arrivals
 static const double SUMMER_WEEKDAY[16] = {
     100, 500,          // 9-10

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "Waterpark.hpp"
 #include "Arrivals.hpp"
+#include <ctime>
 
 int main(int argc, char** argv) {
 
@@ -19,10 +20,11 @@ int main(int argc, char** argv) {
   if (Waterpark::summerMode)
     Waterpark::Capacity.SetCapacity(SUMMER_CAPACITY);
 
-    
+  RandomSeed(time(NULL));
   Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
   (new Arrivals(args.summerMode, args.holiday))->Activate();
   Run();
   arrivalHist.Output();
+
   return EXIT_SUCCESS;
 }
