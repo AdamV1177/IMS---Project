@@ -6,7 +6,7 @@ FILES = src/*.cpp
 .PHONY: all
 
 $(EXE): $(FILES)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -lsimlib
 
 clean: 
 	rm -f $(EXE)
