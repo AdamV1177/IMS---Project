@@ -29,16 +29,21 @@ void Visitor::outsideEntry() {
 
 	// Use summer entry with its queue
 	useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+	Waterpark::moneyMade += BASE_PRICE;
 }
 
 void Visitor::insideEntry() {
 
 	// Chance of the visitor having a prebought ticket
 	// Use either smart kiosks or the main registers with cashiers
-	if (Random() <= ONLINE_TICKET_PROB)
+	if (Random() <= ONLINE_TICKET_PROB){
 		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
-	else
+		Waterpark::moneyMade += ESHOP_PRICE;
+	}
+	else {
 		useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+		Waterpark::moneyMade += BASE_PRICE;
+	}
 }
 
 void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time) {

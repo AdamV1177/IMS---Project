@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "Waterpark.hpp"
 #include "Arrivals.hpp"
+#include <iostream>
 
 int main(int argc, char** argv) {
 
@@ -23,6 +24,10 @@ int main(int argc, char** argv) {
   Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
   (new Arrivals(args.summerMode, args.holiday))->Activate();
   Run();
+
+  // Statistic outputs
+  std::cout << "Money made: " << Waterpark::moneyMade << " Kč" << std::endl;
   arrivalHist.Output();
+
   return EXIT_SUCCESS;
 }

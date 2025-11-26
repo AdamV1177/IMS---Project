@@ -30,6 +30,11 @@
 #define DEFAULT_GAMMA_BETA \
 	DEFAULT_STAY_AVG / DEFAULT_GAMMA_ALPHA // Beta value of gamma distribution outside of summer mode
 
+// Prices
+#define BASE_PRICE 899
+#define ESHOP_PRICE 799
+#define PRICE_POST17 499
+
 #define START_TIME_SIMULATION 9 * HOUR
 #define END_TIME_SIMULATION 22 * HOUR
 
