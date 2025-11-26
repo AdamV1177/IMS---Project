@@ -3,16 +3,17 @@
 #include "Visitor.hpp"
 #include <iostream>
 
-void Arrivals::Behavior() {
-	while (Time / HOUR < 19.5) {
-		int hour = int(Time / HOUR);
-		arrivalHist(hour);
-		double d = GetInterarrivalTime(hour, isSummer, isHoliday);
-		(new Visitor)->Activate();
-		Wait(Exponential(d));
-	}
-}
+Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
 
+void Arrivals::Behavior() {
+    while (Time / HOUR < 19.5) {
+        int hour = int(Time / HOUR);
+		arrivalHist(hour); 
+        double d = GetInterarrivalTime(hour, isSummer, isHoliday);
+        (new Visitor)->Activate();
+        Wait(Exponential(d));
+    }
+}
 double Arrivals::GetArrivalsPerHour(int hour, bool isSummer, bool isHoliday) {
 	if (isSummer) {
 		if (isHoliday)
@@ -34,4 +35,8 @@ double Arrivals::GetInterarrivalTime(int hour, bool isSummer, bool isHoliday) {
 		return 999999;
 
 	return HOUR / arrivals;
+}
+
+void Arrivals::printHistory(){
+	arrivalHist.Output();
 }
