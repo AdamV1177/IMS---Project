@@ -2,50 +2,50 @@
 #include <getopt.h>
 #include <iostream>
 
-Arguments::Result Arguments::parse(int argc, char** argv) {
+Arguments::Result Arguments::parse(int argc, char **argv) {
 
-  // Parse command line arguments
-  int opt;
-  while ((opt = getopt(argc, argv, OPTSTRING)) != -1) {
-    opterr = 0; // Disable default getopt errors
-    
-    switch(opt) {
-      // Summer mode
-      case 's':
-        this->summerMode = true;
-        break;
+	// Parse command line arguments
+	int opt;
+	while ((opt = getopt(argc, argv, OPTSTRING)) != -1) {
+		opterr = 0; // Disable default getopt errors
 
-      // Weekend/national holiday mode
-      case 'w':
-        this->holiday = true;
-        break;
+		switch (opt) {
+		// Summer mode
+		case 's':
+			this->summerMode = true;
+			break;
 
-      // Help text
-      case 'h':
-        printUsage();
-        return HELP;
+		// Weekend/national holiday mode
+		case 'w':
+			this->holiday = true;
+			break;
 
-      // Missing required value
-      case ':':
-        std::cerr << "Missing required value for option -" << (char)optopt << std::endl;
-        printUsage();
-        return ERROR;
-      
-      // Unknown option
-      case '?':
-        std::cerr << "Unknown option -" << (char)optopt << std::endl;
-        printUsage();
-        return ERROR;
-    }
-  }
+		// Help text
+		case 'h':
+			printUsage();
+			return HELP;
 
-  return SUCCESS;
+		// Missing required value
+		case ':':
+			std::cerr << "Missing required value for option -" << (char)optopt << std::endl;
+			printUsage();
+			return ERROR;
+
+		// Unknown option
+		case '?':
+			std::cerr << "Unknown option -" << (char)optopt << std::endl;
+			printUsage();
+			return ERROR;
+		}
+	}
+
+	return SUCCESS;
 }
 
 void Arguments::printUsage() {
-  std::cout << "\nUsage: ./aqualand [-h] [-w] [-s]\n\n";
-  std::cout << "Options:\n";
-  std::cout << "\t-h: Prints this message.\n";
-  std::cout << "\t-w: Runs the model in weekend/national holiday mode.\n";
-  std::cout << "\t-s: Runs the model in summer mode.\n";
+	std::cout << "\nUsage: ./aqualand [-h] [-w] [-s]\n\n";
+	std::cout << "Options:\n";
+	std::cout << "\t-h: Prints this message.\n";
+	std::cout << "\t-w: Runs the model in weekend/national holiday mode.\n";
+	std::cout << "\t-s: Runs the model in summer mode.\n";
 }

@@ -1,0 +1,6 @@
+BasedOnStyle: LLVM
+UseTab: ForIndentation          # používať taby namiesto medzier
+IndentWidth: 1                  # šírka tabulátora
+TabWidth: 1                     # šírka tabulátora
+BreakBeforeBraces: Attach       # otváracia zátvorka na konci hlavičky funkcie
+ColumnLimit: 0

@@ -6,20 +6,20 @@
 
 struct Arguments {
 
-  // Initial values
-  bool summerMode = false;
-  bool holiday = false;
+	// Initial values
+	bool summerMode = false;
+	bool holiday = false;
 
-  // Possible argument parsing results
-  enum Result {
-    ERROR = -1,
-    SUCCESS,
-    HELP,
-  };
+	// Possible argument parsing results
+	enum Result {
+		ERROR = -1,
+		SUCCESS,
+		HELP,
+	};
 
-  Result parse(int argc, char** argv);  // Function parsing command line arguments
-  
-  void printUsage();  // Function outputting program usage help
+	Result parse(int argc, char **argv); // Function parsing command line arguments
+
+	void printUsage(); // Function outputting program usage help
 };
 
 #endif
