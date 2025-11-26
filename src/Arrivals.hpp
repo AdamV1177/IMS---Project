@@ -11,12 +11,11 @@ class Arrivals : public Process {
 
 	// Histogram arrivalHist;
 	public:
-
 	Arrivals(bool summer, bool holiday)
 	    : isSummer(summer),
 	      isHoliday(holiday)
-	    //   arrivalHist("Visitor Arrivals per Hour", 8, 1, 13) 
-		  {}
+	//   arrivalHist("Visitor Arrivals per Hour", 8, 1, 13)
+	{}
 
 	void Behavior();
 
