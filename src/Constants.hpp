@@ -25,10 +25,10 @@
 #define SUMMER_STAY_AVG 6*HOUR              // Average time of stay in the summer mode
 #define DEFAULT_STAY_AVG 4.5*HOUR           // Average time of stay outside summer mode
 #define SUMMER_GAMMA_ALPHA 9                // ??? Alpha value of gamma distribution for summer mode
-#define SUMMER_GAMMA_BETA \                 
+#define SUMMER_GAMMA_BETA \
   SUMMER_STAY_AVG/SUMMER_GAMMA_ALPHA        // Beta value of gamma distribution for summer mode
 #define DEFAULT_GAMMA_ALPHA 10              // ??? Alpha value of gamma distribution outside of summer mode
-#define DEFAULT_GAMMA_BETA \                 
+#define DEFAULT_GAMMA_BETA \
   DEFAULT_STAY_AVG/DEFAULT_GAMMA_ALPHA      // Beta value of gamma distribution outside of summer mode
 
 #endif
