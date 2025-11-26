@@ -1,9 +1,9 @@
 CC = g++
 CFLAGS = -std=c++20 -Wall -Wextra -Werror
-EXE = ims-project
+EXE = aqualand
 FILES = src/*.cpp
 
-.PHONY: all
+.PHONY: all clean
 
 $(EXE): $(FILES)
 	$(CC) $(CFLAGS) $^ -o $@ -lsimlib
