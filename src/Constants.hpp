@@ -45,8 +45,8 @@
 
 // Summer weekday - visitor arrivals
 static const double SUMMER_WEEKDAY[16] = {
-    300, 700,        // 9-10 
-    300, 220, 190,  // 11-13 
+    700, 300,        // 9-10 
+    220, 220, 190,  // 11-13 
     190, 190, 130,  // 14-16 
     480, 190, 50,  // 17-19 
     0, 0, 0, 0      // 20-23 
@@ -54,27 +54,27 @@ static const double SUMMER_WEEKDAY[16] = {
 
 // Summer weekend - visitor arrivals
 static const double SUMMER_WEEKEND[16] = {
-    400, 1000,       // 9-10 
-    350, 320, 280,  // 11-13 
-    200, 200, 130,  // 14-16
+    700, 300,       // 9-10 
+    250, 250, 250,  // 11-13 
+    250, 200, 130,  // 14-16
     600, 360, 240,  // 17-19 
     0, 0, 0, 0      // 20-23 
 };  
 
 // Regular weekday (winter) - visitor arrivals
 static const double DEFAULT_WEEKDAY[16] = {
-    40, 200,        // 9-10 
-    160, 160, 145,  // 11-13 
-    120, 95, 65,    // 14-16 
+    300, 100,        // 9-10 
+    150, 150, 150,  // 11-13 
+    150, 150, 65,    // 14-16 
     240, 145, 95,   // 17-19 
     0, 0, 0, 0      // 20-23
 }; 
 
 // Regular weekend (winter) - visitor arrivals
 static const double DEFAULT_WEEKEND[16] = {
-    200, 540,        // 9-10 
-    300, 240, 220,  // 11-13 
-    180, 140, 100,  // 14-16 
+    700, 350,        // 9-10 
+    250, 150, 150,  // 11-13 
+    200, 200, 100,  // 14-16 
     360, 220, 140,  // 17-19 
     0, 0, 0, 0      // 20-23
 };  
