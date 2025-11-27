@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 
 	// Statistic outputs
 	std::cout << "Money made: " << Waterpark::moneyMade << " Kč" << std::endl;
-	arrivalHist.Output();
+	Waterpark::arrivalHist.Output();
 
 	return EXIT_SUCCESS;
 }

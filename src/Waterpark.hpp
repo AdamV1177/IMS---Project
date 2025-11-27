@@ -6,6 +6,8 @@
 
 namespace Waterpark {
 
+inline Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
+
 inline Store Capacity("Waterpark Capacity", DEFAULT_CAPACITY);  // Waterpark capacity
 inline bool summerMode = false;                                 // Whether waterpark is in summer mode
 
