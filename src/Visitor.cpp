@@ -36,7 +36,7 @@ void Visitor::insideEntry() {
 	// Chance of the visitor having a prebought ticket
 	// Use either smart kiosks or the main registers with cashiers
 	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, MAIN_ENTRY_SMART_TIME);
 		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
 	} else {
 		useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);

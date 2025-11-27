@@ -12,13 +12,13 @@
 #define DEFAULT_CAPACITY 3000 // Default system capacity (outside of summer mode)
 
 // Register capacities
-#define SUMMER_ENTRY_REGISTER_CNT 3 // ??? Number of registers at the summer entry
+#define SUMMER_ENTRY_REGISTER_CNT 6 // ??? Number of registers at the summer entry
 #define MAIN_ENTRY_SMART_CNT 7      // Number of smart registers at the main entry
-#define MAIN_ENTRY_REGISTER_CNT 3   // ??? Number of registers at main entry
+#define MAIN_ENTRY_REGISTER_CNT 6   // ??? Number of registers at main entry
 
 // Register times in minutes
-#define ENTRY_REGISTER_TIME 3   // ??? Average time at a register
-#define MAIN_ENTRY_SMART_TIME 2 // Average time at the smart register
+#define ENTRY_REGISTER_TIME 2.5  // ??? Average time at a register
+#define MAIN_ENTRY_SMART_TIME 1.5 // Average time at the smart register
 
 // Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
@@ -45,8 +45,8 @@
 
 // Summer weekday - visitor arrivals
 static const double SUMMER_WEEKDAY[16] = {
-    700, 300,        // 9-10 
-    220, 220, 190,  // 11-13 
+    300, 700,        // 9-10 
+    200, 220, 190,  // 11-13 
     190, 190, 130,  // 14-16 
     480, 190, 50,  // 17-19 
     0, 0, 0, 0      // 20-23 
@@ -54,8 +54,8 @@ static const double SUMMER_WEEKDAY[16] = {
 
 // Summer weekend - visitor arrivals
 static const double SUMMER_WEEKEND[16] = {
-    700, 300,       // 9-10 
-    250, 250, 250,  // 11-13 
+    300, 600,       // 9-10 
+    200, 250, 250,  // 11-13 
     250, 200, 130,  // 14-16
     600, 360, 240,  // 17-19 
     0, 0, 0, 0      // 20-23 
@@ -63,7 +63,7 @@ static const double SUMMER_WEEKEND[16] = {
 
 // Regular weekday (winter) - visitor arrivals
 static const double DEFAULT_WEEKDAY[16] = {
-    300, 100,        // 9-10 
+    100, 300,        // 9-10 
     150, 150, 150,  // 11-13 
     150, 150, 65,    // 14-16 
     240, 145, 95,   // 17-19 
@@ -72,10 +72,10 @@ static const double DEFAULT_WEEKDAY[16] = {
 
 // Regular weekend (winter) - visitor arrivals
 static const double DEFAULT_WEEKEND[16] = {
-    700, 350,        // 9-10 
-    250, 150, 150,  // 11-13 
-    200, 200, 100,  // 14-16 
-    360, 220, 140,  // 17-19 
+    250, 400,        // 9-10 
+    250, 250, 250,  // 11-13 
+    250, 200, 100,  // 14-16 
+    350, 220, 140,  // 17-19 
     0, 0, 0, 0      // 20-23
 };  
 #endif
