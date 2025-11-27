@@ -45,6 +45,11 @@ void Visitor::insideEntry() {
 }
 
 void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time) {
+
+	// Get time of entering into queue and arrival hour
+	double queueEnter = Time;
+	int arrivalHour = (int)(Time / HOUR);
+	
 	int free = -1;
 	while (free == -1) {
 
@@ -68,6 +73,9 @@ void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time)
 			Passivate();
 		}
 	}
+
+	// Log wait time in queue by arrival hour
+	Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
 
 	// Seize and use register
 	Seize(entry[free]);
