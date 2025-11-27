@@ -41,6 +41,7 @@
 #define OPENING_TIME 10 * HOUR
 #define SALE_TIME 17.0
 #define LAST_ENTRY_TIME 19.5
+#define SIM_HOURS (int)(END_TIME_SIMULATION - START_TIME_SIMULATION) / 60
 
 // Summer weekday - visitor arrivals
 static const double SUMMER_WEEKDAY[16] = {

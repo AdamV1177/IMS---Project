@@ -21,6 +21,7 @@ inline Queue SmartRegisterQueue;
 
 // Statistics
 inline int moneyMade = 0;
+inline Stat QueueWaitTime[SIM_HOURS];
 
 }; // namespace Waterpark
 
