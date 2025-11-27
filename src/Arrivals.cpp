@@ -1,14 +1,15 @@
 #include "Arrivals.hpp"
 #include "Constants.hpp"
 #include "Visitor.hpp"
+#include "Waterpark.hpp"
 #include <iostream>
 
-Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
+
 
 void Arrivals::Behavior() {
 	while (Time / HOUR < LAST_ENTRY_TIME) {
 		int hour = int(Time / HOUR);
-		arrivalHist(hour);
+		Waterpark::arrivalHist(hour);
 		double d = GetInterarrivalTime(hour, isSummer, isHoliday);
 		(new Visitor)->Activate();
 		Wait(Exponential(d));
@@ -35,8 +36,4 @@ double Arrivals::GetInterarrivalTime(int hour, bool isSummer, bool isHoliday) {
 		return 999999;
 
 	return HOUR / arrivals;
-}
-
-void Arrivals::printHistory() {
-	arrivalHist.Output();
 }

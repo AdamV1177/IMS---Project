@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
 	std::cout << "Money made: " << Waterpark::moneyMade << " Kč" << std::endl;
 	std::cout << "-----------------------------------------------------------\n";
 	std::cout << "\n-------------------------ARRIVAL HISTOGRAM------------------------\n";
-	arrivalHist.Output();
+	Waterpark::arrivalHist.Output();
 	std::cout << "-----------------------------------------------------------\n";
 	std::cout << "\n-------------------------TIME IN QUEUE------------------------\n";
 	for (int i = 0; i < SIM_HOURS; i++){
