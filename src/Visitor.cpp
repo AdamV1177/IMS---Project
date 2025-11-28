@@ -53,14 +53,14 @@ void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time)
 	double queueEnter = Time;
 	int arrivalHour = (int)(Time / HOUR);
 	
+	// Passivate process in the queue if the waterpark isnt open yet
+	if (Time < OPENING_TIME) {
+		Into(*queue);
+		Passivate();
+	}
+
 	int free = -1;
 	while (free == -1) {
-
-		// Passivate process in the queue if the waterpark isnt open yet
-		if (Time < OPENING_TIME) {
-			Into(*queue);
-			Passivate();
-		}
 
 		// Look for free register
 		for (int i = 0; i < count; i++) {
