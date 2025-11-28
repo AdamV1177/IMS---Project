@@ -18,10 +18,13 @@ void Visitor::Behavior() {
 
 void Visitor::inWaterpark() {
 
+	const double entryTime = Time;	// Record time of entry into waterpark
+
 	// Wait for some random time based on waterpark mode
 	const double alpha = Waterpark::summerMode ? SUMMER_GAMMA_ALPHA : DEFAULT_GAMMA_ALPHA;
 	const double beta = Waterpark::summerMode ? SUMMER_GAMMA_BETA : DEFAULT_GAMMA_BETA;
 	Wait(Gamma(alpha, beta));
+	Waterpark::TimeInWaterpark((Time - entryTime) / HOUR); // Record time spent inside
 }
 
 void Visitor::outsideEntry() {

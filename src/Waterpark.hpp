@@ -25,6 +25,7 @@ inline Queue SmartRegisterQueue;
 inline int moneyMade = 0;
 inline Stat QueueWaitTime[SIM_HOURS];
 inline int Occupancy[SIM_HOURS];
+inline Histogram TimeInWaterpark("Hours Spent in Waterpark", 0, 1, SIM_HOURS);
 
 }; // namespace Waterpark
 

@@ -52,6 +52,9 @@ int main(int argc, char **argv) {
 		std::cout << "Occupancy at " << i + START_HOUR << ":59: " << Waterpark::Occupancy[i] << std::endl;
 	}
 	std::cout << "-----------------------------------------------------------\n";
+	std::cout << "\n-------------------------TIME SPENT IN WATERPARK------------------------\n";
+	Waterpark::TimeInWaterpark.Output();
+	std::cout << "-----------------------------------------------------------\n";
 
 	return EXIT_SUCCESS;
 }
