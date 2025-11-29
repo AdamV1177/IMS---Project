@@ -5,6 +5,8 @@
 
 // Probabilities
 #define SUMMER_ENTRY_PROB 0.2  // ??? Probablity of visitor entry through the summer entrance
+
+// TODO more people with online ticket
 #define ONLINE_TICKET_PROB 0.6 // ??? Probability of visitor having an online ticket
 
 // Capacities
@@ -12,11 +14,13 @@
 #define DEFAULT_CAPACITY 3000 // Default system capacity (outside of summer mode)
 
 // Register capacities
-#define SUMMER_ENTRY_REGISTER_CNT 6 // ??? Number of registers at the summer entry
-#define MAIN_ENTRY_SMART_CNT 7      // Number of smart registers at the main entry
+// TODO add summer entry smart
+#define SUMMER_ENTRY_REGISTER_CNT 3 // ??? Number of registers at the summer entry
+#define MAIN_ENTRY_SMART_CNT 8      // Number of smart registers at the main entry
 #define MAIN_ENTRY_REGISTER_CNT 6   // ??? Number of registers at main entry
 
 // Register times in minutes
+// TODO lower times, account for families
 #define ENTRY_REGISTER_TIME 2.5  // ??? Average time at a register
 #define MAIN_ENTRY_SMART_TIME 1.5 // Average time at the smart register
 
@@ -74,7 +78,7 @@ static const double DEFAULT_WEEKDAY[16] = {
 
 // Regular weekend (winter) - visitor arrivals
 static const double DEFAULT_WEEKEND[16] = {
-    250, 400,        // 9-10 
+    550, 950,        // 9-10 
     250, 250, 250,  // 11-13 
     250, 200, 100,  // 14-16 
     350, 220, 140,  // 17-19 
