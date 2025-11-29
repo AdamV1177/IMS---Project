@@ -6,11 +6,13 @@
 void Visitor::Behavior() {
 
 	// Choose entry based on time of year and probability
+	int t = Time;
+	// std::cout<< Time/ HOUR << std::endl;
 	if (Waterpark::summerMode && Random() <= SUMMER_ENTRY_PROB)
 		outsideEntry();
 	else
 		insideEntry();
-
+	std::cout<< Time / HOUR << " vstup: " << t/HOUR <<  ", " << (Time -t) / HOUR << std::endl;
 	inWaterpark(); // Visitor in waterpark
 
 	Leave(Waterpark::Capacity); // Return capacity after leaving
@@ -25,6 +27,7 @@ void Visitor::inWaterpark() {
 	const double beta = Waterpark::summerMode ? SUMMER_GAMMA_BETA : DEFAULT_GAMMA_BETA;
 
 	// Wait until the visitors random stay time elapses of the waterpark closes
+	
 	double stayTime = std::min(Gamma(alpha, beta), CLOSING_TIME - Time);
 	Wait(stayTime);
 
