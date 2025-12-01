@@ -2,6 +2,7 @@
 #define CONSTANTS_H
 
 #define HOUR 60.0
+#define MINUTE 1
 
 // Probabilities
 #define SUMMER_ENTRY_PROB 0.2  // ??? Probablity of visitor entry through the summer entrance
@@ -21,16 +22,16 @@
 
 // Register times in minutes
 // TODO lower times, account for families
-#define ENTRY_REGISTER_TIME 2.5  // ??? Average time at a register
-#define MAIN_ENTRY_SMART_TIME 1.5 // Average time at the smart register
+#define ENTRY_REGISTER_TIME 0.4  // ??? Average time at a register
+#define MAIN_ENTRY_SMART_TIME 0.3 // Average time at the smart register
 
 // Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
-#define DEFAULT_STAY_AVG 4.5 * HOUR // Average time of stay outside summer mode
+#define DEFAULT_STAY_AVG 6 * HOUR // Average time of stay outside summer mode
 #define SUMMER_GAMMA_ALPHA 9        // ??? Alpha value of gamma distribution for summer mode
 #define SUMMER_GAMMA_BETA \
 	SUMMER_STAY_AVG / SUMMER_GAMMA_ALPHA // Beta value of gamma distribution for summer mode
-#define DEFAULT_GAMMA_ALPHA 10        // ??? Alpha value of gamma distribution outside of summer mode
+#define DEFAULT_GAMMA_ALPHA 5       // ??? Alpha value of gamma distribution outside of summer mode
 #define DEFAULT_GAMMA_BETA \
 	DEFAULT_STAY_AVG / DEFAULT_GAMMA_ALPHA // Beta value of gamma distribution outside of summer mode
 
@@ -79,9 +80,9 @@ static const double DEFAULT_WEEKDAY[16] = {
 // Regular weekend (winter) - visitor arrivals
 static const double DEFAULT_WEEKEND[16] = {
     550, 950,        // 9-10 
-    250, 250, 250,  // 11-13 
-    250, 200, 100,  // 14-16 
-    350, 220, 140,  // 17-19 
+    650, 550, 350,  // 11-13 
+    300, 200, 200,  // 14-16 
+    350, 50, 30,  // 17-19 
     0, 0, 0, 0      // 20-23
 };  
 #endif
