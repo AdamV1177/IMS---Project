@@ -28,12 +28,12 @@
 // Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
 #define DEFAULT_WEEKEND_STAY_AVG 6 * HOUR  // Average time of stay outside summer mode
-#define DEFAULT_STAY_AVG 5 * HOUR  // Average time of stay outside summer mode
+#define DEFAULT_STAY_AVG 4 * HOUR  // Average time of stay outside summer mode
 #define SUMMER_GAMMA_ALPHA 5        // ??? Alpha value of gamma distribution for summer mode
 
 #define SUMMER_GAMMA_BETA \
 	SUMMER_STAY_AVG / SUMMER_GAMMA_ALPHA // Beta value of gamma distribution for summer mode
-#define DEFAULT_GAMMA_ALPHA 15       // ??? Alpha value of gamma distribution outside of summer mode
+#define DEFAULT_GAMMA_ALPHA 10       // ??? Alpha value of gamma distribution outside of summer mode
 #define DEFAULT_GAMMA_BETA \
 	DEFAULT_STAY_AVG / DEFAULT_GAMMA_ALPHA // Beta value of gamma distribution outside of summer mode
 
@@ -79,8 +79,8 @@ static const double SUMMER_WEEKEND[16] = {
 static const double DEFAULT_WEEKDAY[16] = {
     100, 300,        // 9-10 
     250, 150, 150,  // 11-13 
-    150, 150, 150,    // 14-16 
-    240, 145, 95,   // 17-19 
+    150, 150, 100,    // 14-16 
+    200, 145, 95,   // 17-19 
     0, 0, 0, 0      // 20-23
 }; 
 
