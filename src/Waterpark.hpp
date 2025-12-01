@@ -18,7 +18,7 @@ inline bool holidayMode = false;                                // Whether water
 inline Facility SummerEntry[SUMMER_ENTRY_REGISTER_CNT];         // Summer entry with registers
 inline Facility MainEntry[MAIN_ENTRY_REGISTER_CNT];             // Main entry for visitors without ticket
 inline Facility SmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Smart register entry for visitors with ticket
-inline Facility SummerSmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Summer smart register entry for visitors with ticket
+inline Facility SummerSmartRegisterEntry[SUMMER_ENTRY_SMART_CNT];       // Summer smart register entry for visitors with ticket
 
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
@@ -62,6 +62,12 @@ inline void outputStatistics() {
 	std::cout << "-----------------------------------------------------------\n";
 
 	Waterpark::departureHist.Output();
+
+	Waterpark::MainEntryQueue.Output();
+	Waterpark::SummerEntryQueue.Output();
+	Waterpark::SummerSmartRegisterQueue.Output();
+	Waterpark::SmartRegisterQueue.Output();
+
 };
 
 }; // namespace Waterpark
