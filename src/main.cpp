@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
 
 	// Set summer mode and capacity
 	Waterpark::summerMode = args.summerMode;
+	Waterpark::holidayMode = args.holiday;
 	if (Waterpark::summerMode)
 		Waterpark::Capacity.SetCapacity(SUMMER_CAPACITY);
 

@@ -28,6 +28,7 @@
 // Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
 #define DEFAULT_WEEKEND_STAY_AVG 6 * HOUR  // Average time of stay outside summer mode
+#define DEFAULT_STAY_AVG 5 * HOUR  // Average time of stay outside summer mode
 #define SUMMER_GAMMA_ALPHA 5        // ??? Alpha value of gamma distribution for summer mode
 
 #define SUMMER_GAMMA_BETA \

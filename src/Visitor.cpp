@@ -19,17 +19,22 @@ void Visitor::Behavior() {
 	Waterpark::departureHist((int)Time / HOUR);
 }
 
+double Visitor::getStayTime() {
+	const double alpha = !Waterpark::summerMode ? 
+		(Waterpark::holidayMode ? DEFAULT_WEEKEND_GAMMA_ALPHA : DEFAULT_GAMMA_ALPHA) : SUMMER_GAMMA_ALPHA;
+
+	const double beta = !Waterpark::summerMode ? 
+		(Waterpark::holidayMode ? DEFAULT_WEEKEND_GAMMA_BETA : DEFAULT_GAMMA_BETA) : SUMMER_GAMMA_BETA;
+
+	return std::min(Gamma(alpha, beta), CLOSING_TIME - Time);
+}
+
 void Visitor::inWaterpark() {
 
 	const double entryTime = Time;	// Record time of entry into waterpark
 
-	// Wait for some random time based on waterpark mode
-	const double alpha = Waterpark::summerMode ? SUMMER_GAMMA_ALPHA : DEFAULT_GAMMA_ALPHA;
-	const double beta = Waterpark::summerMode ? SUMMER_GAMMA_BETA : DEFAULT_GAMMA_BETA;
-
 	// Wait until the visitors random stay time elapses of the waterpark closes
-	
-	double stayTime = std::min(Gamma(alpha, beta), CLOSING_TIME - Time);
+	double stayTime = getStayTime();
 	Wait(stayTime);
 
 	Waterpark::TimeInWaterpark((Time - entryTime) / HOUR); // Record time spent inside
