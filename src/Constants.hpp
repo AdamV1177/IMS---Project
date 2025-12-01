@@ -5,25 +5,24 @@
 #define MINUTE 1
 
 // Probabilities
-#define SUMMER_ENTRY_PROB 0.2  // ??? Probablity of visitor entry through the summer entrance
+#define SUMMER_ENTRY_PROB 0.25  // Probablity of visitor entry through the summer entrance
 
-// TODO more people with online ticket
-#define ONLINE_TICKET_PROB 0.6 // ??? Probability of visitor having an online ticket
+// More people with online ticket
+#define ONLINE_TICKET_PROB 0.8 // Probability of visitor having an online ticket
 
 // Capacities
 #define SUMMER_CAPACITY 6500  // System capacity in summer mode
 #define DEFAULT_CAPACITY 3000 // Default system capacity (outside of summer mode)
 
 // Register capacities
-// TODO add summer entry smart
-#define SUMMER_ENTRY_REGISTER_CNT 3 // ??? Number of registers at the summer entry
+#define SUMMER_ENTRY_REGISTER_CNT 3 // Number of registers at the summer entry
+#define SUMMER_ENTRY_SMART_CNT 3    // Number of smart register at the summer entry
 #define MAIN_ENTRY_SMART_CNT 8      // Number of smart registers at the main entry
-#define MAIN_ENTRY_REGISTER_CNT 6   // ??? Number of registers at main entry
+#define MAIN_ENTRY_REGISTER_CNT 6   // Number of registers at main entry
 
 // Register times in minutes
-// TODO lower times, account for families
-#define ENTRY_REGISTER_TIME 0.4  // ??? Average time at a register
-#define MAIN_ENTRY_SMART_TIME 0.3 // Average time at the smart register
+#define ENTRY_REGISTER_TIME 0.4     // Average time at a register
+#define MAIN_ENTRY_SMART_TIME 0.3   // Average time at the smart register
 
 // Average Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
