@@ -25,22 +25,25 @@
 #define ENTRY_REGISTER_TIME 0.4  // ??? Average time at a register
 #define MAIN_ENTRY_SMART_TIME 0.3 // Average time at the smart register
 
-// Visitor stay time
+// Average Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode
 #define DEFAULT_WEEKEND_STAY_AVG 6 * HOUR  // Average time of stay outside summer mode
 #define DEFAULT_STAY_AVG 5 * HOUR  // Average time of stay outside summer mode
-#define SUMMER_GAMMA_ALPHA 5        // ??? Alpha value of gamma distribution for summer mode
 
+// Summer gamma distribution values
+#define SUMMER_GAMMA_ALPHA 5        // ??? Alpha value of gamma distribution for summer mode
 #define SUMMER_GAMMA_BETA \
 	SUMMER_STAY_AVG / SUMMER_GAMMA_ALPHA // Beta value of gamma distribution for summer mode
+
+// Normal day gamma distribution values
 #define DEFAULT_GAMMA_ALPHA 15       // ??? Alpha value of gamma distribution outside of summer mode
 #define DEFAULT_GAMMA_BETA \
 	DEFAULT_STAY_AVG / DEFAULT_GAMMA_ALPHA // Beta value of gamma distribution outside of summer mode
 
+// Weekend gamma distribution values
 #define DEFAULT_WEEKEND_GAMMA_ALPHA 15        // Alpha value of gamma distribution for weekend
 #define DEFAULT_WEEKEND_GAMMA_BETA \
     DEFAULT_WEEKEND_STAY_AVG / DEFAULT_WEEKEND_GAMMA_ALPHA  // Beta value of gamma distribution for weekend
-
 
 // Prices
 #define BASE_PRICE 899
