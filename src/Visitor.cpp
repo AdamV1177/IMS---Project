@@ -16,6 +16,7 @@ void Visitor::Behavior() {
 	inWaterpark(); // Visitor in waterpark
 
 	Leave(Waterpark::Capacity); // Return capacity after leaving
+	Waterpark::departureHist((int)Time / HOUR);
 }
 
 void Visitor::inWaterpark() {
