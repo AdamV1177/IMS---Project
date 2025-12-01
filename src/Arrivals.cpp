@@ -33,7 +33,7 @@ double Arrivals::GetInterarrivalTime(int hour, bool isSummer, bool isHoliday) {
 	double arrivals = GetArrivalsPerHour(hour, isSummer, isHoliday);
 
 	if (arrivals <= 0)
-		return 999999;
+		return __INT_MAX__;
 
 	return HOUR / arrivals;
 }
