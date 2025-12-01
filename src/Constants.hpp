@@ -78,8 +78,8 @@ static const double SUMMER_WEEKEND[16] = {
 // Regular weekday (winter) - visitor arrivals
 static const double DEFAULT_WEEKDAY[16] = {
     100, 300,        // 9-10 
-    150, 150, 150,  // 11-13 
-    150, 150, 65,    // 14-16 
+    250, 150, 150,  // 11-13 
+    150, 150, 150,    // 14-16 
     240, 145, 95,   // 17-19 
     0, 0, 0, 0      // 20-23
 }; 
