@@ -22,7 +22,7 @@
 
 // Register times in minutes
 #define ENTRY_REGISTER_TIME 0.4     // Average time at a register
-#define MAIN_ENTRY_SMART_TIME 0.3   // Average time at the smart register
+#define ENTRY_SMART_TIME 0.3        // Average time at the smart register
 
 // Average Visitor stay time
 #define SUMMER_STAY_AVG 6 * HOUR    // Average time of stay in the summer mode

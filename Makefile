@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++20 -Wall -Wextra -Werror
+CFLAGS = -std=c++20 -Wall -Wextra -Werror -g
 EXE = aqualand
 FILES = src/*.cpp
 

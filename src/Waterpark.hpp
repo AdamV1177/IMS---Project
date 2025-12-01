@@ -18,11 +18,13 @@ inline bool holidayMode = false;                                // Whether water
 inline Facility SummerEntry[SUMMER_ENTRY_REGISTER_CNT];         // Summer entry with registers
 inline Facility MainEntry[MAIN_ENTRY_REGISTER_CNT];             // Main entry for visitors without ticket
 inline Facility SmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Smart register entry for visitors with ticket
+inline Facility SummerSmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Summer smart register entry for visitors with ticket
 
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
 inline Queue MainEntryQueue;
 inline Queue SmartRegisterQueue;
+inline Queue SummerSmartRegisterQueue;
 
 // Statistics
 inline int moneyMade = 0;

@@ -6,13 +6,11 @@
 void Visitor::Behavior() {
 
 	// Choose entry based on time of year and probability
-	int t = Time;
-	// std::cout<< Time/ HOUR << std::endl;
 	if (Waterpark::summerMode && Random() <= SUMMER_ENTRY_PROB)
 		outsideEntry();
 	else
 		insideEntry();
-	std::cout<< Time / HOUR << " vstup: " << t/HOUR <<  ", " << (Time -t) / HOUR << std::endl;
+		
 	inWaterpark(); // Visitor in waterpark
 
 	Leave(Waterpark::Capacity); // Return capacity after leaving
@@ -42,9 +40,15 @@ void Visitor::inWaterpark() {
 
 void Visitor::outsideEntry() {
 
-	// Use summer entry with its queue
-	useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
-	Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
+	// Chance of the visitor having a prebought ticket
+	// Use either smart kiosks or the main registers with cashiers
+	if (Random() <= ONLINE_TICKET_PROB) {
+		useRegister(Waterpark::SummerSmartRegisterEntry, &Waterpark::SummerSmartRegisterQueue, SUMMER_ENTRY_SMART_CNT, ENTRY_SMART_TIME);
+		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
+	} else {
+		useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
+		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
+	}
 }
 
 void Visitor::insideEntry() {
@@ -52,7 +56,7 @@ void Visitor::insideEntry() {
 	// Chance of the visitor having a prebought ticket
 	// Use either smart kiosks or the main registers with cashiers
 	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, MAIN_ENTRY_SMART_TIME);
+		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::SmartRegisterQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_SMART_TIME);
 		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
 	} else {
 		useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
