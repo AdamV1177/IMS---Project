@@ -96,6 +96,7 @@ void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time)
 
 	// Take waterpark capacity on entry
 	Enter(Waterpark::Capacity);
+	Waterpark::entryHist((int)Time / HOUR);
 
 	// Log wait time in queue by arrival hour
 	Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
