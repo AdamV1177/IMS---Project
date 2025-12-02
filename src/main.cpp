@@ -31,6 +31,7 @@ int main(int argc, char **argv) {
 
 	// Statistic outputs
 	Waterpark::outputStatistics();
+	Waterpark::cleanup();
 
 	return EXIT_SUCCESS;
 }

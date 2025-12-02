@@ -79,6 +79,15 @@ void Waterpark::initialize(const Config& config) {
 }
 
 void Waterpark::cleanup() {
+
+	for (auto f : SummerEntry)
+    	delete f;
+	for (auto f : SummerSmartRegisterEntry)
+    	delete f;
+	for (auto f : MainEntry)
+    	delete f;
+	for (auto f : SmartRegisterEntry)
+    	delete f;
 	SummerEntry.clear();
     SummerSmartRegisterEntry.clear();
     MainEntry.clear();
