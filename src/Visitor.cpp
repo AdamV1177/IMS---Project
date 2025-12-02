@@ -15,6 +15,8 @@ void Visitor::Behavior() {
 
 	Leave(Waterpark::Capacity); // Return capacity after leaving
 	Waterpark::departureHist((int)Time / HOUR);
+    if (Waterpark::CapacityQueue.Length() > 0)
+        (Waterpark::CapacityQueue.GetFirst())->Activate();
 }
 
 double Visitor::getStayTime() {
@@ -96,19 +98,29 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
         }
     }
 
-	// Take waterpark capacity on entry
-	Enter(Waterpark::Capacity);
-	Waterpark::entryHist((int)Time / HOUR);
-
-    // Log wait time in queue by arrival hour
-    // Ensure START_TIME_SIMULATION is defined in your headers
-    Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
-
+    // Seize the found free register
     Seize(*registers[free]);
-    Wait(Exponential(time));
-    Release(*registers[free]);
 
-    // Activate process in Queue
+    while (true) {
+
+        // If the waterpark is not at capacity, enter through found free register
+        if (!Waterpark::Capacity.Full()) {
+            Enter(Waterpark::Capacity);
+            Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
+            Wait(Exponential(time));
+            Release(*registers[free]);
+            Waterpark::entryHist((int)Time / HOUR);
+            break;
+        }
+
+        // Otherwise wait for capacity to free up, but keep the found free register seized
+        else {
+            Into(Waterpark::CapacityQueue);
+            Passivate();
+        }
+    }
+    
+    // Activate next process in Queue
     if (queue->Length() > 0)
         (queue->GetFirst())->Activate();
 }

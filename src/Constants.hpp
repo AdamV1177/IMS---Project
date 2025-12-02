@@ -56,7 +56,7 @@
 #define OPENING_TIME 10 * HOUR
 #define CLOSING_TIME 21 * HOUR
 #define SALE_TIME 17.0
-#define LAST_ENTRY_TIME 19.5
+#define LAST_ENTRY_TIME 19.5 * HOUR
 #define SIM_HOURS (int)(END_TIME_SIMULATION - START_TIME_SIMULATION) / 60
 
 // Summer weekday - visitor arrivals

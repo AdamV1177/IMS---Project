@@ -6,6 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include "OccupancySampler.hpp"
+#include "LastEntry.hpp"
 
 int main(int argc, char **argv) {
 
@@ -26,6 +27,7 @@ int main(int argc, char **argv) {
 	Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
 	(new Arrivals)->Activate();
 	(new OpeningTime)->Activate(OPENING_TIME);
+	(new LastEntry)->Activate(LAST_ENTRY_TIME);
 	(new OccupancySampler)->Activate(START_TIME_SIMULATION + HOUR - 1);	// Start sampling occupancy at end of first hour
 	Run();
 

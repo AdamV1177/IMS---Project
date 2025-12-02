@@ -14,6 +14,7 @@ inline Histogram departureHist("Visitor Departures per Hour", 8, 1, 13);
 inline Histogram entryHist("Visitor entires into the waterpark per Hour", 8, 1, 13);
 
 inline Store Capacity("Waterpark Capacity", DEFAULT_CAPACITY);  // Waterpark capacity
+inline Queue CapacityQueue;
 inline bool summerMode = false;                                 // Whether waterpark is in summer mode
 inline bool holidayMode = false;                                // Whether waterpark is in holiday mode
 inline double visitorScale = 1.0;                   

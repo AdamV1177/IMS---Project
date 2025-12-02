@@ -5,7 +5,7 @@
 #include <iostream>
 
 void Arrivals::Behavior() {
-	while (Time / HOUR < LAST_ENTRY_TIME) {
+	while (Time < LAST_ENTRY_TIME) {
 		int hour = int(Time / HOUR);
 		Waterpark::arrivalHist(hour);
 		double d = GetInterarrivalTime(hour);
