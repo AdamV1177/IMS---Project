@@ -96,8 +96,9 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
         }
     }
 
-    // Take waterpark capacity on entry
-    Enter(Waterpark::Capacity);
+	// Take waterpark capacity on entry
+	Enter(Waterpark::Capacity);
+	Waterpark::entryHist((int)Time / HOUR);
 
     // Log wait time in queue by arrival hour
     // Ensure START_TIME_SIMULATION is defined in your headers

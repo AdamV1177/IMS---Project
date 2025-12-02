@@ -11,6 +11,7 @@ namespace Waterpark {
 
 inline Histogram arrivalHist("Visitor Arrivals per Hour", 8, 1, 13);
 inline Histogram departureHist("Visitor Departures per Hour", 8, 1, 13);
+inline Histogram entryHist("Visitor entires into the waterpark per Hour", 8, 1, 13);
 
 inline Store Capacity("Waterpark Capacity", DEFAULT_CAPACITY);  // Waterpark capacity
 inline bool summerMode = false;                                 // Whether waterpark is in summer mode
@@ -104,12 +105,20 @@ inline void outputStatistics() {
 	Waterpark::TimeInWaterpark.Output();
 	std::cout << "-----------------------------------------------------------\n";
 
+	std::cout << "\n-------------------------DEPARTURES PER HOUR------------------------\n";
 	Waterpark::departureHist.Output();
+	std::cout << "-----------------------------------------------------------\n";
 
+	std::cout << "\n-------------------------ENTRIES INTO WATERPARK PER HOUR------------------------\n";
+	Waterpark::entryHist.Output();
+	std::cout << "-----------------------------------------------------------\n";
+
+	std::cout << "\n-------------------------ALL INDIVIDUAL QUEUES ------------------------\n";
 	Waterpark::MainEntryQueue.Output();
 	Waterpark::SummerEntryQueue.Output();
 	Waterpark::SummerSmartRegisterQueue.Output();
 	Waterpark::SmartRegisterQueue.Output();
+	std::cout << "-----------------------------------------------------------\n";
 
 };
 
