@@ -104,7 +104,6 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
     // Ensure START_TIME_SIMULATION is defined in your headers
     Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
 
-    // UPDATED: Dereference the pointer (*) to pass the object to Seize
     Seize(*registers[free]);
     Wait(Exponential(time));
     Release(*registers[free]);
