@@ -1,14 +1,15 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
-// Options -s, -h, -w
-#define OPTSTRING ":swh"
+// Options -s, -h, -w, -m
+#define OPTSTRING ":swhm:"
 
 struct Arguments {
 
 	// Initial values
 	bool summerMode = false;
 	bool holiday = false;
+	double visitorScale = 1.0;
 
 	// Possible argument parsing results
 	enum Result {

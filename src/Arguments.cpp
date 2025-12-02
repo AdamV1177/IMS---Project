@@ -1,6 +1,7 @@
 #include "Arguments.hpp"
 #include <getopt.h>
 #include <iostream>
+#include <string>
 
 Arguments::Result Arguments::parse(int argc, char **argv) {
 
@@ -25,6 +26,28 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 			printUsage();
 			return HELP;
 
+		// Visitor scale
+		case 'm':
+			try {
+				this->visitorScale = std::stof(optarg);
+				if (this->visitorScale < 0) {
+					std::cerr << "Only provide non-negative values to -m: " << optarg << std::endl;
+					printUsage();
+					return ERROR;
+				}
+				break;
+			}
+			catch(const std::invalid_argument&) {
+				std::cerr << "Invalid float passed to -m: " << optarg << std::endl;
+				printUsage();
+				return ERROR;
+			}
+			catch(const std::out_of_range&) {
+				std::cerr << "Float out of range for -m: " << optarg << "\n";
+				printUsage();
+				return ERROR;
+			}
+
 		// Missing required value
 		case ':':
 			std::cerr << "Missing required value for option -" << (char)optopt << std::endl;
@@ -43,9 +66,10 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 }
 
 void Arguments::printUsage() {
-	std::cout << "\nUsage: ./aqualand [-h] [-w] [-s]\n\n";
+	std::cout << "\nUsage: ./aqualand [-h] [-w] [-s] [-m visitor_scale]\n\n";
 	std::cout << "Options:\n";
 	std::cout << "\t-h: Prints this message.\n";
 	std::cout << "\t-w: Runs the model in weekend/national holiday mode.\n";
 	std::cout << "\t-s: Runs the model in summer mode.\n";
+	std::cout << "\t-m: Scales the amount of visitors coming into the waterpark by visitor_scale. Only non-negative values.\n";
 }

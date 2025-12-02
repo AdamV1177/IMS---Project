@@ -15,6 +15,7 @@ inline Histogram entryHist("Visitor entires into the waterpark per Hour", 8, 1, 
 inline Store Capacity("Waterpark Capacity", DEFAULT_CAPACITY);  // Waterpark capacity
 inline bool summerMode = false;                                 // Whether waterpark is in summer mode
 inline bool holidayMode = false;                                // Whether waterpark is in holiday mode
+inline double visitorScale = 1.0;                   
 
 // Entries
 inline std::vector<Facility> SummerEntry(SUMMER_ENTRY_REGISTER_CNT);

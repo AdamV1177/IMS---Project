@@ -30,7 +30,7 @@ double Arrivals::GetArrivalsPerHour(int hour, bool isSummer, bool isHoliday) {
 }
 
 double Arrivals::GetInterarrivalTime(int hour, bool isSummer, bool isHoliday) {
-	double arrivals = GetArrivalsPerHour(hour, isSummer, isHoliday);
+	double arrivals = GetArrivalsPerHour(hour, isSummer, isHoliday) * Waterpark::visitorScale;
 
 	if (arrivals <= 0)
 		return __INT_MAX__;
