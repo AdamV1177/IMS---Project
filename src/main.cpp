@@ -19,15 +19,12 @@ int main(int argc, char **argv) {
 		return EXIT_FAILURE;
 
 	// Set summer mode and capacity
-	Waterpark::summerMode = args.summerMode;
-	Waterpark::holidayMode = args.holiday;
-	if (Waterpark::summerMode)
-		Waterpark::Capacity.SetCapacity(SUMMER_CAPACITY);
+	Waterpark::initialize(args.config);
 
 	// Initialize and run simulation
 	RandomSeed(time(NULL));
 	Init(START_TIME_SIMULATION, END_TIME_SIMULATION);
-	(new Arrivals(args.summerMode, args.holiday))->Activate();
+	(new Arrivals)->Activate();
 	(new OpeningTime)->Activate(OPENING_TIME);
 	(new OccupancySampler)->Activate(START_TIME_SIMULATION + HOUR - 1);	// Start sampling occupancy at end of first hour
 	Run();

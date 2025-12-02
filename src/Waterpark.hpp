@@ -2,8 +2,10 @@
 #define WATERPARK_H
 
 #include "Constants.hpp"
+#include "Arguments.hpp"
 #include <simlib.h>
 #include <iostream>
+#include <vector>
 
 namespace Waterpark {
 
@@ -15,10 +17,11 @@ inline bool summerMode = false;                                 // Whether water
 inline bool holidayMode = false;                                // Whether waterpark is in holiday mode
 
 // Entries
-inline Facility SummerEntry[SUMMER_ENTRY_REGISTER_CNT];         // Summer entry with registers
-inline Facility MainEntry[MAIN_ENTRY_REGISTER_CNT];             // Main entry for visitors without ticket
-inline Facility SmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Smart register entry for visitors with ticket
-inline Facility SummerSmartRegisterEntry[SUMMER_ENTRY_SMART_CNT];       // Summer smart register entry for visitors with ticket
+inline std::vector<Facility*> SummerEntry;
+inline std::vector<Facility*> MainEntry;
+inline std::vector<Facility*> SmartRegisterEntry;
+inline std::vector<Facility*> SummerSmartRegisterEntry;
+
 
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
@@ -31,6 +34,46 @@ inline int moneyMade = 0;
 inline Stat QueueWaitTime[SIM_HOURS];
 inline int Occupancy[SIM_HOURS];
 inline Histogram TimeInWaterpark("Hours Spent in Waterpark", 0, 1, SIM_HOURS);
+
+// Initialize facilities based on configuration
+inline void initialize(const Config& config) {
+    summerMode = config.summerMode;
+    holidayMode = config.holiday;
+    
+    // 1. Initialize Summer Entry Registers
+    for (int i = 0; i < config.summerEntryRegisterCnt; i++) {
+        // We allocate a NEW facility and store the pointer
+        SummerEntry.push_back(new simlib3::Facility("Summer Entry Register"));
+    }
+
+    // 2. Initialize Summer Smart Registers
+    for (int i = 0; i < config.summerEntrySmartCnt; i++) {
+        SummerSmartRegisterEntry.push_back(new simlib3::Facility("Summer Smart Register"));
+    }
+
+    // 3. Initialize Main Entry Registers
+    for (int i = 0; i < config.mainEntryRegisterCnt; i++) {
+        MainEntry.push_back(new simlib3::Facility("Main Entry Register"));
+    }
+
+    // 4. Initialize Smart Register Entries
+    for (int i = 0; i < config.mainEntrySmartCnt; i++) {
+        SmartRegisterEntry.push_back(new simlib3::Facility("Main Smart Register"));
+    }
+    
+    // Set capacity based on mode
+    if (summerMode) {
+        Capacity.SetCapacity(SUMMER_CAPACITY);
+    }
+}
+
+// Cleanup dynamically allocated facilities
+inline void cleanup() {
+    SummerEntry.clear();
+    SummerSmartRegisterEntry.clear();
+    MainEntry.clear();
+    SmartRegisterEntry.clear();
+}
 
 inline void outputStatistics() {
     std::cout << "-------------------------MONEY MADE------------------------\n";
