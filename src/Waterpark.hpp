@@ -24,8 +24,8 @@ inline Facility SummerSmartRegisterEntry[SUMMER_ENTRY_SMART_CNT];       // Summe
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
 inline Queue MainEntryQueue;
-inline Queue SmartRegisterQueue;
-inline Queue SummerSmartRegisterQueue;
+inline Queue MainSmartQueue;
+inline Queue SummerSmartQueue;
 
 // Statistics
 inline int moneyMade = 0;

@@ -41,8 +41,8 @@ void Waterpark::outputStatistics() {
 	std::cout << "\n-------------------------ALL INDIVIDUAL QUEUES ------------------------\n";
 	Waterpark::MainEntryQueue.Output();
 	Waterpark::SummerEntryQueue.Output();
-	Waterpark::SummerSmartRegisterQueue.Output();
-	Waterpark::SmartRegisterQueue.Output();
+	Waterpark::SummerSmartQueue.Output();
+	Waterpark::MainSmartQueue.Output();
 	std::cout << "-----------------------------------------------------------\n";
 
 };

@@ -4,7 +4,7 @@
 
 void OpeningTime::Behavior() {
 	// When the waterpark opens, activate as many processes as there are registers in that entry
-	openQueue(&Waterpark::SmartRegisterQueue, MAIN_ENTRY_SMART_CNT);
+	openQueue(&Waterpark::MainSmartQueue, MAIN_ENTRY_SMART_CNT);
 	openQueue(&Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT);
 	openQueue(&Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT);
 }
