@@ -66,6 +66,11 @@ void Waterpark::initialize(const Config& config) {
     for (int i = 0; i < config.mainEntrySmartCnt; i++) {
         SmartRegisterEntry.push_back(new simlib3::Facility("Main Smart Register"));
     }
+
+	SummerEntryCnt = config.summerEntryRegisterCnt;
+	SummerSmartRegisterEntryCnt = config.summerEntrySmartCnt;
+	MainEntryCnt = config.mainEntryRegisterCnt;
+	SmartRegisterEntryCnt = config.mainEntrySmartCnt;
     
     // Set capacity based on mode
     if (summerMode) {

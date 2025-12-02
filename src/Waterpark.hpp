@@ -25,6 +25,11 @@ inline std::vector<Facility*> MainEntry;
 inline std::vector<Facility*> SmartRegisterEntry;
 inline std::vector<Facility*> SummerSmartRegisterEntry;
 
+inline int SummerEntryCnt;
+inline int MainEntryCnt;
+inline int SmartRegisterEntryCnt;
+inline int SummerSmartRegisterEntryCnt;
+
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
 inline Queue MainEntryQueue;

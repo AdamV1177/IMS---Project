@@ -4,7 +4,8 @@
 #include <simlib.h>
 
 class LastEntry : public Event {
-	void Behavior();                             
+	void Behavior();       
+	void ClearQueue(Queue& queue);                      
 };
 
 #endif

@@ -25,7 +25,7 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 		case 'm': {
             int regular, smart;
             if (sscanf(optarg, "%d,%d", &regular, &smart) == 2) {
-                if (regular > 0 && smart > 0) {
+                if (regular >= 0 && smart >= 0) {
                     config.mainEntryRegisterCnt = regular;
                     config.mainEntrySmartCnt = smart;
                 } else {
@@ -44,7 +44,7 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
         case 'r': {
             int regular, smart;
             if (sscanf(optarg, "%d,%d", &regular, &smart) == 2) {
-                if (regular > 0 && smart > 0) {
+                if (regular >= 0 && smart >= 0) {
                     config.summerEntryRegisterCnt = regular;
                     config.summerEntrySmartCnt = smart;
                 } else {

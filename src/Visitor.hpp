@@ -5,6 +5,9 @@
 #include <vector>
 
 class Visitor : public Process {
+	public:
+	double QueueTimeEnter = 0;
+	double QueueTimeWait = 0;
 
 	// Main Visitor process
 	void Behavior();
