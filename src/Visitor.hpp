@@ -2,6 +2,7 @@
 #define VISITOR_H
 
 #include <simlib.h>
+#include <vector>
 
 class Visitor : public Process {
 
@@ -18,7 +19,7 @@ class Visitor : public Process {
 	void inWaterpark();
 
 	// Function using a register at a generic entry with a generic queue
-	void useRegister(Facility *entry, Queue *queue, int count, double time);
+	void useRegister(std::vector<Facility>& entry, Queue *queue, int count, double time);
 
 	double getStayTime();
 };

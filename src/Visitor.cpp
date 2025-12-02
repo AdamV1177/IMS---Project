@@ -43,7 +43,7 @@ void Visitor::outsideEntry() {
 	// Chance of the visitor having a prebought ticket
 	// Use either smart kiosks or the main registers with cashiers
 	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::SummerSmartRegisterEntry, &Waterpark::SummerSmartQueue, SUMMER_ENTRY_SMART_CNT, ENTRY_SMART_TIME);
+		useRegister(Waterpark::SummerSmartEntry, &Waterpark::SummerSmartQueue, SUMMER_ENTRY_SMART_CNT, ENTRY_SMART_TIME);
 		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
 	} else {
 		useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
@@ -56,7 +56,7 @@ void Visitor::insideEntry() {
 	// Chance of the visitor having a prebought ticket
 	// Use either smart kiosks or the main registers with cashiers
 	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::SmartRegisterEntry, &Waterpark::MainSmartQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_SMART_TIME);
+		useRegister(Waterpark::MainSmartEntry, &Waterpark::MainSmartQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_SMART_TIME);
 		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
 	} else {
 		useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
@@ -64,7 +64,7 @@ void Visitor::insideEntry() {
 	}
 }
 
-void Visitor::useRegister(Facility *entry, Queue *queue, int count, double time) {
+void Visitor::useRegister(std::vector<Facility>& entry, Queue *queue, int count, double time) {
 
 	// Get time of entering into queue and arrival hour
 	double queueEnter = Time;

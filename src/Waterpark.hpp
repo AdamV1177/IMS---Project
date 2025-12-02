@@ -4,6 +4,7 @@
 #include "Constants.hpp"
 #include <simlib.h>
 #include <iostream>
+#include <vector>
 
 namespace Waterpark {
 
@@ -16,10 +17,10 @@ inline bool summerMode = false;                                 // Whether water
 inline bool holidayMode = false;                                // Whether waterpark is in holiday mode
 
 // Entries
-inline Facility SummerEntry[SUMMER_ENTRY_REGISTER_CNT];         // Summer entry with registers
-inline Facility MainEntry[MAIN_ENTRY_REGISTER_CNT];             // Main entry for visitors without ticket
-inline Facility SmartRegisterEntry[MAIN_ENTRY_SMART_CNT];       // Smart register entry for visitors with ticket
-inline Facility SummerSmartRegisterEntry[SUMMER_ENTRY_SMART_CNT];       // Summer smart register entry for visitors with ticket
+inline std::vector<Facility> SummerEntry(SUMMER_ENTRY_REGISTER_CNT);
+inline std::vector<Facility> MainEntry(MAIN_ENTRY_REGISTER_CNT);
+inline std::vector<Facility> MainSmartEntry(MAIN_ENTRY_SMART_CNT);
+inline std::vector<Facility> SummerSmartEntry(SUMMER_ENTRY_SMART_CNT);
 
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
