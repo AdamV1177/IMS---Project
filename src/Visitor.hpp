@@ -19,7 +19,7 @@ class Visitor : public Process {
 	void inWaterpark();
 
 	// Function using a register at a generic entry with a generic queue
-	void useRegister(std::vector<Facility>& entry, Queue *queue, int count, double time);
+	void useRegister(std::vector<simlib3::Facility*>& registers, simlib3::Queue *queue, int count, double time);
 
 	double getStayTime();
 };

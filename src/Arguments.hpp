@@ -1,15 +1,25 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
-// Options -s, -h, -w, -m
-#define OPTSTRING ":swhm:"
+#include "Constants.hpp"
+
+#define OPTSTRING ":shwm:r:t:v:"
+
+struct Config {
+    // Entry register counts
+    int summerEntryRegisterCnt = SUMMER_ENTRY_REGISTER_CNT;
+    int summerEntrySmartCnt = SUMMER_ENTRY_SMART_CNT;
+    int mainEntrySmartCnt = MAIN_ENTRY_SMART_CNT;          
+    int mainEntryRegisterCnt = MAIN_ENTRY_REGISTER_CNT;      
+	double visitorScale = 1.0; 
+    
+    // Mode flags
+    bool summerMode = false;
+    bool holiday = false;
+};
 
 struct Arguments {
-
-	// Initial values
-	bool summerMode = false;
-	bool holiday = false;
-	double visitorScale = 1.0;
+	Config config;
 
 	// Possible argument parsing results
 	enum Result {
@@ -21,6 +31,7 @@ struct Arguments {
 	Result parse(int argc, char **argv); // Function parsing command line arguments
 
 	void printUsage(); // Function outputting program usage help
+
 };
 
 #endif

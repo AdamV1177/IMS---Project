@@ -40,73 +40,76 @@ void Visitor::inWaterpark() {
 
 void Visitor::outsideEntry() {
 
-	// Chance of the visitor having a prebought ticket
-	// Use either smart kiosks or the main registers with cashiers
-	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::SummerSmartEntry, &Waterpark::SummerSmartQueue, SUMMER_ENTRY_SMART_CNT, ENTRY_SMART_TIME);
-		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
-	} else {
-		useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
-		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
-	}
+    // Chance of the visitor having a prebought ticket
+    if (Random() <= ONLINE_TICKET_PROB) {
+        useRegister(Waterpark::SummerSmartRegisterEntry, &Waterpark::SummerSmartQueue, 
+                    Waterpark::SummerSmartRegisterEntry.size(), ENTRY_SMART_TIME);
+        Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
+    } else {
+        useRegister(Waterpark::SummerEntry, &Waterpark::SummerEntryQueue, 
+                    Waterpark::SummerEntry.size(), ENTRY_REGISTER_TIME);
+        Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
+    }
 }
 
 void Visitor::insideEntry() {
-
-	// Chance of the visitor having a prebought ticket
-	// Use either smart kiosks or the main registers with cashiers
-	if (Random() <= ONLINE_TICKET_PROB) {
-		useRegister(Waterpark::MainSmartEntry, &Waterpark::MainSmartQueue, SUMMER_ENTRY_REGISTER_CNT, ENTRY_SMART_TIME);
-		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
-	} else {
-		useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, MAIN_ENTRY_REGISTER_CNT, ENTRY_REGISTER_TIME);
-		Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
-	}
+    // Chance of the visitor having a prebought ticket
+    if (Random() <= ONLINE_TICKET_PROB) {
+        useRegister(Waterpark::SmartRegisterEntry, &Waterpark::MainSmartQueue, 
+                    Waterpark::SmartRegisterEntry.size(), ENTRY_SMART_TIME);
+        Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
+    } else {
+        useRegister(Waterpark::MainEntry, &Waterpark::MainEntryQueue, 
+                    Waterpark::MainEntry.size(), ENTRY_REGISTER_TIME);
+        Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
+    }
 }
 
-void Visitor::useRegister(std::vector<Facility>& entry, Queue *queue, int count, double time) {
+void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int count, double time) {
 
-	// Get time of entering into queue and arrival hour
-	double queueEnter = Time;
-	int arrivalHour = (int)(Time / HOUR);
-	
-	// Passivate process in the queue if the waterpark isnt open yet
-	if (Time < OPENING_TIME) {
-		Into(*queue);
-		Passivate();
-	}
+    // Get time of entering into queue and arrival hour
+    double queueEnter = Time;
+    int arrivalHour = (int)(Time / HOUR);
+    
+    // Passivate process in the queue if the waterpark isnt open yet
+    if (Time < OPENING_TIME) {
+        Into(*queue);
+        Passivate();
+    }
 
-	int free = -1;
-	while (free == -1) {
+    int free = -1;
+    while (free == -1) {
 
-		// Look for free register
-		for (int i = 0; i < count; i++) {
-			if (!entry[i].Busy()) {
-				free = i;
-				break;
-			}
-		}
+        // Look for free register
+        for (int i = 0; i < count; i++) {
+            // UPDATED: Use -> because registers[i] is a pointer
+            if (!registers[i]->Busy()) {
+                free = i;
+                break;
+            }
+        }
 
-		// No free register, enter queue and wait for activation
-		if (free == -1) {
-			Into(*queue);
-			Passivate();
-		}
-	}
+        // No free register, enter queue and wait for activation
+        if (free == -1) {
+            Into(*queue);
+            Passivate();
+        }
+    }
 
 	// Take waterpark capacity on entry
 	Enter(Waterpark::Capacity);
 	Waterpark::entryHist((int)Time / HOUR);
 
-	// Log wait time in queue by arrival hour
-	Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
+    // Log wait time in queue by arrival hour
+    // Ensure START_TIME_SIMULATION is defined in your headers
+    Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
 
-	// Seize and use register
-	Seize(entry[free]);
-	Wait(Exponential(time));
-	Release(entry[free]);
+    // UPDATED: Dereference the pointer (*) to pass the object to Seize
+    Seize(*registers[free]);
+    Wait(Exponential(time));
+    Release(*registers[free]);
 
-	// Activate process in Queue
-	if (queue->Length() > 0)
-		(queue->GetFirst())->Activate();
+    // Activate process in Queue
+    if (queue->Length() > 0)
+        (queue->GetFirst())->Activate();
 }

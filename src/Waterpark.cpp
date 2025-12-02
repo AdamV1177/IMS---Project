@@ -44,5 +44,43 @@ void Waterpark::outputStatistics() {
 	Waterpark::SummerSmartQueue.Output();
 	Waterpark::MainSmartQueue.Output();
 	std::cout << "-----------------------------------------------------------\n";
-
 };
+
+void Waterpark::initialize(const Config& config) {
+    summerMode = config.summerMode;
+    holidayMode = config.holiday;
+    visitorScale = config.visitorScale;
+    
+    // 1. Initialize Summer Entry Registers
+    for (int i = 0; i < config.summerEntryRegisterCnt; i++) {
+        // We allocate a NEW facility and store the pointer
+        SummerEntry.push_back(new simlib3::Facility("Summer Entry Register"));
+    }
+
+    // 2. Initialize Summer Smart Registers
+    for (int i = 0; i < config.summerEntrySmartCnt; i++) {
+        SummerSmartRegisterEntry.push_back(new simlib3::Facility("Summer Smart Register"));
+    }
+
+    // 3. Initialize Main Entry Registers
+    for (int i = 0; i < config.mainEntryRegisterCnt; i++) {
+        MainEntry.push_back(new simlib3::Facility("Main Entry Register"));
+    }
+
+    // 4. Initialize Smart Register Entries
+    for (int i = 0; i < config.mainEntrySmartCnt; i++) {
+        SmartRegisterEntry.push_back(new simlib3::Facility("Main Smart Register"));
+    }
+    
+    // Set capacity based on mode
+    if (summerMode) {
+        Capacity.SetCapacity(SUMMER_CAPACITY);
+    }
+}
+
+void Waterpark::cleanup() {
+	SummerEntry.clear();
+    SummerSmartRegisterEntry.clear();
+    MainEntry.clear();
+    SmartRegisterEntry.clear();
+}

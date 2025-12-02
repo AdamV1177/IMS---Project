@@ -2,6 +2,7 @@
 #define WATERPARK_H
 
 #include "Constants.hpp"
+#include "Arguments.hpp"
 #include <simlib.h>
 #include <iostream>
 #include <vector>
@@ -18,10 +19,10 @@ inline bool holidayMode = false;                                // Whether water
 inline double visitorScale = 1.0;                   
 
 // Entries
-inline std::vector<Facility> SummerEntry(SUMMER_ENTRY_REGISTER_CNT);
-inline std::vector<Facility> MainEntry(MAIN_ENTRY_REGISTER_CNT);
-inline std::vector<Facility> MainSmartEntry(MAIN_ENTRY_SMART_CNT);
-inline std::vector<Facility> SummerSmartEntry(SUMMER_ENTRY_SMART_CNT);
+inline std::vector<Facility*> SummerEntry;
+inline std::vector<Facility*> MainEntry;
+inline std::vector<Facility*> SmartRegisterEntry;
+inline std::vector<Facility*> SummerSmartRegisterEntry;
 
 // Queues for each entry
 inline Queue SummerEntryQueue;                                  
@@ -36,6 +37,10 @@ inline int Occupancy[SIM_HOURS];
 inline Histogram TimeInWaterpark("Hours Spent in Waterpark", 0, 1, SIM_HOURS);
 
 void outputStatistics();
+
+void initialize(const Config& config);
+
+void cleanup();
 
 }; // namespace Waterpark
 
