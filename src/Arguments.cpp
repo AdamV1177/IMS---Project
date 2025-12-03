@@ -87,6 +87,11 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 				return ERROR;
 			}
 
+		// Open summer entry in non-mode
+		case 'o':
+			config.forceSummerEntry = true;
+			break;
+
 		// Missing required value
 		case ':':
 			std::cerr << "Missing required value for option -" << (char)optopt << std::endl;

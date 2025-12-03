@@ -50,6 +50,7 @@ void Waterpark::initialize(const Config& config) {
     summerMode = config.summerMode;
     holidayMode = config.holiday;
     visitorScale = config.visitorScale;
+	forceSummerEntry = config.forceSummerEntry;
     
     for (int i = 0; i < config.summerEntryRegisterCnt; i++) {
         SummerEntry.push_back(new simlib3::Facility("Summer Entry Register"));
