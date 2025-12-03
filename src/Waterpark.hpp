@@ -17,6 +17,7 @@ inline Store Capacity("Waterpark Capacity", DEFAULT_CAPACITY);  // Waterpark cap
 inline Queue CapacityQueue;
 inline bool summerMode = false;                                 // Whether waterpark is in summer mode
 inline bool holidayMode = false;                                // Whether waterpark is in holiday mode
+inline bool forceSummerEntry = false;                           // Flag needed for an experiment
 inline double visitorScale = 1.0;                   
 
 // Entries

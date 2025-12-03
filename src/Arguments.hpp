@@ -3,7 +3,7 @@
 
 #include "Constants.hpp"
 
-#define OPTSTRING ":shwm:r:t:v:"
+#define OPTSTRING ":shwm:r:t:v:o"
 
 struct Config {
     // Entry register counts
@@ -16,6 +16,7 @@ struct Config {
     // Mode flags
     bool summerMode = false;
     bool holiday = false;
+	bool forceSummerEntry = false;
 };
 
 struct Arguments {

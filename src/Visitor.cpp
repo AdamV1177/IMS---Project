@@ -9,7 +9,7 @@ void Visitor::Behavior() {
 
 	if (outsideOpen && insideOpen) {
         // Normal summer mode random choice
-        if (Waterpark::summerMode && Random() <= SUMMER_ENTRY_PROB)
+        if ((Waterpark::forceSummerEntry || Waterpark::summerMode) && Random() <= SUMMER_ENTRY_PROB)
             outsideEntry();
         else
             insideEntry();
