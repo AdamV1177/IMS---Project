@@ -9,6 +9,9 @@ $(EXE): $(FILES)
 
 all: clean $(EXE)
 
+run: $(EXE)
+	./$(EXE) $(ARGS)
+
 clean: 
 	rm -f $(EXE)
 
