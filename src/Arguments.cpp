@@ -110,16 +110,23 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 }
 
 void Arguments::printUsage() {
-    std::cout << "\nUsage: ./aqualand [OPTIONS]\n\n";
+    std::cout << "\nUsage: make run ARGS='[OPTIONS]'\n\n";
     std::cout << "Options:\n";
-    std::cout << "  -h              Show this help message\n";
-    std::cout << "  -w              Weekend/national holiday mode\n";
-    std::cout << "  -s              Summer mode\n";
-    std::cout << "  -m <reg>,<smart> Main entry registers (default: 6,8)\n";
-    std::cout << "  -r <reg>,<smart> Summer entry registers (default: 3,3)\n";
-    std::cout << "  -v <visitor_scale> Multiplier, with which to scale the incoming visitor counts (default: 1.0)\n";
+    std::cout << "  -h                   Show this help message\n";
+    std::cout << "  -w                   Weekend/national holiday mode\n";
+    std::cout << "  -s                   Summer mode\n";
+    std::cout << "  -m <reg>,<smart>     Main entry registers (default: 6,8)\n";
+    std::cout << "  -r <reg>,<smart>     Summer entry registers (default: 3,3)\n";
+    std::cout << "  -v <visitor_scale>   Multiplier to scale incoming visitor counts (default: 1.0)\n";
+    std::cout << "  -o                   Force open the summer entry even outside summer mode\n";
+    
     std::cout << "\nExamples:\n";
-    std::cout << "  ./aqualand -s -m 8,10        # Summer mode with 8 regular, 10 smart at main\n";
-    std::cout << "  ./aqualand -w -s -r 4,4 -m 8,12 # Summer weekend with custom registers\n";
-    std::cout << "  ./aqualand -v 0.5 # The incoming amount of visitor halves\n";
+    std::cout << "  make run ARGS='-s -m 8,10'\n";
+    std::cout << "      # Summer mode with 8 regular and 10 smart registers at main entry\n";
+    
+    std::cout << "  make run ARGS='-w -s -r 4,4 -m 8,12'\n";
+    std::cout << "      # Summer weekend/holiday with custom registers\n";
+    
+    std::cout << "  make run ARGS='-v 0.5'\n";
+    std::cout << "      # Incoming visitor count is halved\n";
 }
