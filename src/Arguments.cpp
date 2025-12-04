@@ -24,6 +24,8 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 		// Main entry registers: -m <regular>,<smart>
 		case 'm': {
             int regular, smart;
+
+			// Check valid option values
             if (sscanf(optarg, "%d,%d", &regular, &smart) == 2) {
                 if (regular >= 0 && smart >= 0) {
                     config.mainEntryRegisterCnt = regular;
@@ -42,6 +44,8 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 
         // Summer entry registers: -r <regular>,<smart>
         case 'r': {
+
+			// Check valid option values
             int regular, smart;
             if (sscanf(optarg, "%d,%d", &regular, &smart) == 2) {
                 if (regular >= 0 && smart >= 0) {
@@ -68,6 +72,8 @@ Arguments::Result Arguments::parse(int argc, char **argv) {
 		// Visitor scale
 		case 'v':
 			try {
+
+				// Attempt conversion to float and check positive value
 				this->config.visitorScale = std::stof(optarg);
 				if (this->config.visitorScale < 0) {
 					std::cerr << "Only provide non-negative values to -v: " << optarg << std::endl;

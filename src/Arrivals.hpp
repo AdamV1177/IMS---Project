@@ -5,13 +5,12 @@
 #include "Waterpark.hpp"
 
 class Arrivals : public Process {
-	public:
+public:
 
-	void Behavior();
+	void Behavior();	// Main method of visitor generator
 
-	void printHistory();
-	double GetArrivalsPerHour(int hour);
-	double GetInterarrivalTime(int hour);
+	double GetArrivalsPerHour(int hour);	// Function accessing per hour visitor counts from Constants.hpp
+	double GetInterarrivalTime(int hour);	// Function calculating time betwwen visitor arrivals for given hour
 };
 
 #endif

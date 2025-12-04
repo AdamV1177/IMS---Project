@@ -11,16 +11,17 @@ struct Config {
     int summerEntrySmartCnt = SUMMER_ENTRY_SMART_CNT;
     int mainEntrySmartCnt = MAIN_ENTRY_SMART_CNT;          
     int mainEntryRegisterCnt = MAIN_ENTRY_REGISTER_CNT;      
-	double visitorScale = 1.0; 
+
+	double visitorScale = 1.0;	// Scaling of incoming visitors
     
-    // Mode flags
+    // Waterpark mode flags
     bool summerMode = false;
     bool holiday = false;
 	bool forceSummerEntry = false;
 };
 
 struct Arguments {
-	Config config;
+	Config config;	// Parsed configuration of watepark (see above)
 
 	// Possible argument parsing results
 	enum Result {

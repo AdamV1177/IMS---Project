@@ -5,9 +5,9 @@
 #include <vector>
 
 class Visitor : public Process {
-	public:
-	double QueueTimeEnter = 0;
-	double QueueTimeWait = 0;
+public:
+	double QueueTimeEnter = 0;	// Visitors time entering a queue
+	double QueueTimeWait = 0;	// Visitors time waiting in a queue
 
 	// Main Visitor process
 	void Behavior();
@@ -24,6 +24,7 @@ class Visitor : public Process {
 	// Function using a register at a generic entry with a generic queue
 	void useRegister(std::vector<simlib3::Facility*>& registers, simlib3::Queue *queue, int count, double time);
 
+	// Function getting the stay time value for a visitor
 	double getStayTime();
 };
 

@@ -4,6 +4,8 @@
 #include <simlib.h>
 
 void LastEntry::Behavior() {
+
+    // Clear all queues 
     ClearQueue(Waterpark::SummerEntryQueue);
     ClearQueue(Waterpark::SummerSmartQueue);
     ClearQueue(Waterpark::MainEntryQueue);
@@ -12,6 +14,8 @@ void LastEntry::Behavior() {
 }
 
 void LastEntry::ClearQueue(Queue& queue) {
+
+    // Log statistic of wait time in queue for visitors leaving because of last entry time
     while (queue.Length() > 0) {
         Visitor* v = static_cast<Visitor*>(queue.GetFirst());
         if (v) {

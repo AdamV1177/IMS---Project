@@ -3,9 +3,10 @@
 
 #include <simlib.h>
 
+// Event firing when time of last entry hits
 class LastEntry : public Event {
-	void Behavior();       
-	void ClearQueue(Queue& queue);                      
+	void Behavior();				// Event entry point
+	void ClearQueue(Queue& queue);	// Function clearing the specified queue
 };
 
 #endif

@@ -4,6 +4,8 @@
 #include <iostream>
 
 void Visitor::Behavior() {
+
+    // Check if both waterpark enterances have an open register
     bool outsideOpen = Waterpark::SummerEntryCnt > 0 || Waterpark::SummerSmartRegisterEntryCnt > 0;
     bool insideOpen  = Waterpark::MainEntryCnt > 0 || Waterpark::SmartRegisterEntryCnt > 0;
 
@@ -23,19 +25,24 @@ void Visitor::Behavior() {
 		
 	inWaterpark(); // Visitor in waterpark
 
-	Leave(Waterpark::Capacity); // Return capacity after leaving
+    // Return capacity after leaving and register departure statistic
+	Leave(Waterpark::Capacity); 
 	Waterpark::departureHist((int)Time / HOUR);
+
+    // If some visitor is waiting for capacity to free up, activate
     if (Waterpark::CapacityQueue.Length() > 0)
         (Waterpark::CapacityQueue.GetFirst())->Activate();
 }
 
 double Visitor::getStayTime() {
+
+    // Get gamma distribution values based on mode
 	const double alpha = !Waterpark::summerMode ? 
 		(Waterpark::holidayMode ? DEFAULT_WEEKEND_GAMMA_ALPHA : DEFAULT_GAMMA_ALPHA) : SUMMER_GAMMA_ALPHA;
-
 	const double beta = !Waterpark::summerMode ? 
 		(Waterpark::holidayMode ? DEFAULT_WEEKEND_GAMMA_BETA : DEFAULT_GAMMA_BETA) : SUMMER_GAMMA_BETA;
 
+    // Limit visitors stay only up to closing time
 	return std::min(Gamma(alpha, beta), CLOSING_TIME - Time);
 }
 
@@ -51,7 +58,9 @@ void Visitor::inWaterpark() {
 }
 
 void Visitor::outsideEntry() {
-    if(Waterpark::SummerEntryCnt == 0 ){
+
+    // Use only register group that is available
+    if(Waterpark::SummerEntryCnt == 0){
         useRegister(Waterpark::SummerSmartRegisterEntry, &Waterpark::SummerSmartQueue, 
                     Waterpark::SummerSmartRegisterEntry.size(), ENTRY_SMART_TIME);
         Waterpark::moneyMade += Time / HOUR < SALE_TIME ? ESHOP_PRICE : SALE_PRICE;
@@ -61,6 +70,8 @@ void Visitor::outsideEntry() {
                     Waterpark::SummerEntry.size(), ENTRY_REGISTER_TIME);
         Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
     }
+
+    // Otherwise normal random choice based on online ticket probability
     else{
         if (Random() <= ONLINE_TICKET_PROB) {
             useRegister(Waterpark::SummerSmartRegisterEntry, &Waterpark::SummerSmartQueue, 
@@ -75,6 +86,8 @@ void Visitor::outsideEntry() {
 }
 
 void Visitor::insideEntry() {
+
+    // Use only register group that is available
     if(Waterpark::MainEntryCnt == 0){
         useRegister(Waterpark::SmartRegisterEntry, &Waterpark::MainSmartQueue, 
                     Waterpark::SmartRegisterEntry.size(), ENTRY_SMART_TIME);
@@ -85,6 +98,8 @@ void Visitor::insideEntry() {
                     Waterpark::MainEntry.size(), ENTRY_REGISTER_TIME);
         Waterpark::moneyMade += Time / HOUR < SALE_TIME ? BASE_PRICE : SALE_PRICE;
     }
+
+    // Otherwise normal random choice based on online ticket probability
     else{
         if (Random() <= ONLINE_TICKET_PROB) {
         useRegister(Waterpark::SmartRegisterEntry, &Waterpark::MainSmartQueue, 
@@ -105,7 +120,7 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
     QueueTimeEnter = Time;
     int arrivalHour = (int)(Time / HOUR);
     
-    // Passivate process in the queue if the waterpark isnt open yet
+    // Passivate process in the queue if the waterpark isnt open yet (gets activated later by OpeningTime event)
     if (Time < OPENING_TIME) {
         Into(*queue);
         Passivate();
@@ -116,7 +131,6 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
 
         // Look for free register
         for (int i = 0; i < count; i++) {
-            // UPDATED: Use -> because registers[i] is a pointer
             if (!registers[i]->Busy()) {
                 free = i;
                 break;
@@ -137,12 +151,14 @@ void Visitor::useRegister(std::vector<Facility*>& registers, Queue *queue, int c
 
         // If the waterpark is not at capacity, enter through found free register
         if (!Waterpark::Capacity.Full()) {
+
+            // Take capacity and register time witing in queue
             Enter(Waterpark::Capacity);
             QueueTimeWait = Time - QueueTimeEnter;
-            // Waterpark::QueueWaitTime[arrivalHour - (int)(START_TIME_SIMULATION / HOUR)](Time - queueEnter);
             int hourIndex = arrivalHour - (int)(START_TIME_SIMULATION / HOUR);
             Waterpark::QueueWaitTime[hourIndex](QueueTimeWait);
 
+            // Wait random time at register, after finished, release the facility and register time of entry
             Wait(Exponential(time));
             Release(*registers[free]);
             Waterpark::entryHist((int)Time / HOUR);

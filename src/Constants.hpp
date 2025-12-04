@@ -6,8 +6,6 @@
 
 // Probabilities
 #define SUMMER_ENTRY_PROB 0.25  // Probablity of visitor entry through the summer entrance
-
-// More people with online ticket
 #define ONLINE_TICKET_PROB 0.6 // Probability of visitor having an online ticket
 
 // Capacities
@@ -21,8 +19,8 @@
 #define MAIN_ENTRY_REGISTER_CNT 6   // Number of registers at main entry
 
 // Register times in minutes
-#define ENTRY_REGISTER_TIME 0.7     // Average time at a register
-#define ENTRY_SMART_TIME 0.5        // Average time at the smart register
+#define ENTRY_REGISTER_TIME 0.7     // Average time spent at a regular register
+#define ENTRY_SMART_TIME 0.5        // Average time spent at a smart register
 
 // Visitor stay time coefficients
 #define SUMMER_STAY 7 * HOUR    

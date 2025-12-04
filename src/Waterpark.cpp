@@ -39,9 +39,13 @@ void Waterpark::outputStatistics() {
 	std::cout << "-----------------------------------------------------------\n";
 
 	std::cout << "\n-------------------------ALL INDIVIDUAL QUEUES ------------------------\n";
+	std::cout << "\n-------------------------Main entry queue------------------------\n";
 	Waterpark::MainEntryQueue.Output();
+	std::cout << "\n-------------------------Summer entry queue------------------------\n";
 	Waterpark::SummerEntryQueue.Output();
+	std::cout << "\n-------------------------Summer entry (smart registers) queue------------------------\n";
 	Waterpark::SummerSmartQueue.Output();
+	std::cout << "\n-------------------------Main entry (smart registers) queue------------------------\n";
 	Waterpark::MainSmartQueue.Output();
 	std::cout << "-----------------------------------------------------------\n";
 };
