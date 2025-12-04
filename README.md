@@ -6,7 +6,7 @@
 - Ján Skovajsa (xskovaj00)
 
 #### Simulační studie (dokumentace)
-??
+- `./study.pdf`
 
 #### Zdrojové soubory simulačního modelu
 - `./src/*`
